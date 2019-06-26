@@ -25,7 +25,7 @@ asteroidCount = levelData["AsteroidCount"]
 player = Ship((levelData["PlayerX"], levelData["PlayerY"]))
 
 def init():
-    global asteroidCount, asteroids, levelData
+    global asteroidsCount, asteroids, levelData
     levelData = df.iloc[level]
     player.reset((levelData["PlayerX"], levelData["PlayerY"]))
     asteroids.empty()
@@ -43,3 +43,66 @@ def win():
         assert isinstance(text_rect,)
         screen.blit(text, text_rect)
         pygame.display.flip()
+
+def main():
+    global level
+    init()
+    while level <= numLevels:
+        clock.tick(60)
+        for event in pygame.event.get():
+            if event.type == quit:
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    player.speed[0] = 10
+                if event.key == pygame.K_LEFT:
+                    player.speed[0] = -10
+                if event.key == pygame.K_UP:
+                    player.speed[1] = 10
+                if event.key == pygame.K_DOWN:
+                    player.speed[1] = -10
+                if event.key == pygame.K_d:
+                    player.speed[0] = 10
+                if event.key == pygame.K_a:
+                    player.speed[0] = -10
+                if event.key == pygame.K_w:
+                    player.speed[1] = 10
+                if event.key == pygame.K_s:
+                    player.speed[1] = -10
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_RIGHT:
+                    player.speed[0] = 0
+                if event.key == pygame.K_LEFT:
+                    player.speed[0] = 0
+                if event.key == pygame.K_UP:
+                    player.speed[1] = 0
+                if event.key == pygame.K_DOWN:
+                    player.speed[1] = 0
+                if event.key == pygame.K_d:
+                    player.speed[0] = 0
+                if event.key == pygame.K_a:
+                    player.speed[0] = 0
+                if event.key == pygame.K_w:
+                    player.speed[1] = 0
+                if event.key == pygame.K_s:
+                    player.speed[1] = 0
+        screen.fill(color)
+        player.update()
+        asteroids.update()
+        gets_hit = pygame.sprite.spritecollide(player, asteroids)
+        asteroids.draw(screen)
+        screen.blit(player.image, player.rect)
+        pygame.display.flip()
+
+        if player.check_reset(width):
+            if level == numLevels:
+                break
+            else:
+                level += 1
+                init()
+        elif gets_hit:
+            player.reset((levelData['PlayerX'], levelData["PlayerY"]))
+    win()
+
+if __name__ == "__main__":
+    main()
