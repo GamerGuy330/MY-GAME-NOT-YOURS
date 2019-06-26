@@ -6,7 +6,7 @@ from pygame.locals import *
 pygame.init()
 screen_info = pygame.display.Info()
 #set the width and height to the size of the screen
-size = (width, height) = (int(screen_info.current_w * 0.5), int(screen_info.current_h *))
+size = (width, height) = (int(screen_info.current_w * 0.5), int(screen_info.current_h * 0.5))
 
 screen = pygame.display.set_mode(size)
 clock = pygame.time.Clock()
