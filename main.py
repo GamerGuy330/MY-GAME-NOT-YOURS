@@ -35,10 +35,11 @@ def init():
 
 def win():
     font = pygame.font.SysFont(None, 70)
-    text = font.render("Yeet Yeet Yeet Yeet Yeet Yeet Yeet Yeet Yeet Yeet Yeet Yeet Yeet", True, (255, 0, 0))
+    text = font.render("You have passed the asteroid belt, you are now safe!", True, (255, 0, 0))
     text_rect = text.get_rect()
     text_rect.center = (width/2, height/2)
     while True:
         screen.fill(color)
+        assert isinstance(text_rect,)
         screen.blit(text, text_rect)
         pygame.display.flip()
