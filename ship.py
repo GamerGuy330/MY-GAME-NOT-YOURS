@@ -7,7 +7,7 @@ class Ship(pygame.sprite.Sprite):
         self.image = pygame.image.load("spaceship.png")
         self.image = pygame.transform.smoothscale(self.image, (40, 40))
         self.image = pygame.transform.rotate(self.image, -90)
-        self.rect = self.image.get__rect()
+        self.rect = self.image.get_rect()
         self.rect.center = pos
         self.speed = pygame.math.Vector2(0, 0)
 

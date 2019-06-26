@@ -5,8 +5,9 @@ class Asteroid(pygame.sprite.Sprite):
     def __init__(self, pos, size):
         super().__init__()
         self.image = pygame.image.load("asteroid.png")
-        self.image = pygame.transform.smoothscale(self.image(size, size))
+        self.image = pygame.transform.smoothscale(self.image, (size, size))
         self.rect = self.image.get_rect()
+        self.rect.center = pos
         self.speed = pygame.math.Vector2(0,3)
         self.speed.rotate_ip(random.randint(0, 360))
 
